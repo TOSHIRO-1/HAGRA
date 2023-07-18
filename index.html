@@ -97,9 +97,6 @@
   <header>
     <div id="search-bar">
       <input type="text" id="search-input" placeholder="Rechercher un clip...">
-      <select id="select-filter">
-        <option value="all">Tous les clips</option>
-      </select>
     </div>
   </header>
 
@@ -183,46 +180,6 @@
 
       displayClips(filteredClips);
     }
-
-    // Fonction pour filtrer les clips en fonction du choix sélectionné
-    function filterClips(choice) {
-      if (choice === 'all') {
-        displayClips(clips);
-      } else {
-        var filteredClips = clips.filter(function(clip) {
-          return clip.title.toLowerCase().includes(choice.toLowerCase());
-        });
-        displayClips(filteredClips);
-      }
-    }
-
-    // Fonction pour ajouter un clip au sélecteur
-    function addClipToSelect(clip) {
-      var select = document.getElementById('select-filter');
-      var option = document.createElement('option');
-      option.value = clip.title;
-      option.textContent = clip.title;
-      select.appendChild(option);
-    }
-
-    // Événement de recherche
-    var searchInput = document.getElementById('search-input');
-    searchInput.addEventListener('keyup', function(event) {
-      var keyword = event.target.value;
-      searchClips(keyword);
-    });
-
-    // Événement de sélection du filtre
-    var selectFilter = document.getElementById('select-filter');
-    selectFilter.addEventListener('change', function(event) {
-      var choice = event.target.value;
-      filterClips(choice);
-    });
-
-    // Ajouter tous les clips au sélecteur
-    clips.forEach(function(clip) {
-      addClipToSelect(clip);
-    });
 
     // Afficher tous les clips au chargement de la page
     displayClips(clips);
